@@ -29,6 +29,9 @@ venv/
 
 # -- Specific to gitignore:
 
+# Git submodules
+!Fooocus
+
 # Build configuration files (allow)
 !Dockerfile
 !Makefile
