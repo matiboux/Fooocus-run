@@ -12,12 +12,33 @@ FROM python_upstream AS app_base
 
 WORKDIR /app
 
-# Installing requirements
+# Install app requirements
 COPY --link ./Fooocus/requirements_versions.txt .
 RUN pip install --no-cache-dir -r requirements_versions.txt && \
+	pip install --no-cache-dir \
+		torch==2.1.0 \
+		torchvision==0.16.0 \
+		&& \
 	# Clean up
 	pip cache purge && \
 	rm -rf /root/.cache/pip
+
+# Install additional runtime requirements
+RUN pip install --no-cache-dir \
+		torch==2.1.0 \
+		torchvision==0.16.0 \
+		&& \
+	# Clean up
+	pip cache purge && \
+	rm -rf /root/.cache/pip
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends \
+		libgl1 \
+		libglib2.0-0 \
+		&& \
+	# Clean up
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/*
 
 # Set exposed port
 ARG PORT=80
