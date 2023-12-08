@@ -15,10 +15,6 @@ WORKDIR /app
 # Install app requirements
 COPY --link ./Fooocus/requirements_versions.txt .
 RUN pip install --no-cache-dir -r requirements_versions.txt && \
-	pip install --no-cache-dir \
-		torch==2.1.0 \
-		torchvision==0.16.0 \
-		&& \
 	# Clean up
 	pip cache purge && \
 	rm -rf /root/.cache/pip
