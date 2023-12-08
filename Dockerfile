@@ -55,4 +55,4 @@ VOLUME /app
 # Expose port
 EXPOSE ${PORT}
 
-CMD [ "python", "entry_with_update.py", "--listen" ]
+CMD [ "/bin/sh", "-c", "python entry_with_update.py --listen \"0.0.0.0\" --port \"${PORT}\"" ]
