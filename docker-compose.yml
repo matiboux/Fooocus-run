@@ -24,6 +24,7 @@ services:
               count: 1
               capabilities:
                 - gpu
+    tty: true # Required for pygit2.Repository
     ports:
       # HTTP
       - target: ${PORT:-80}
