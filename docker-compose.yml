@@ -12,6 +12,7 @@ services:
       dockerfile: ./Dockerfile
       target: app_prod
       args:
+        PYTHON_BASE: ${PYTHON_BASE:-base} # Valid values: base, cuda
         PORT: ${PORT:-80}
     # Deploy
     volumes:
